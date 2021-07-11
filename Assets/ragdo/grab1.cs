@@ -31,7 +31,7 @@ public class grab1 : MonoBehaviour
             {
                 animator.SetBool("rightUp", true);
             }
-            alreadyGrabbing = true;
+         
         }
         else if (Input.GetMouseButtonUp(isLeftorRight))
         {
@@ -46,9 +46,10 @@ public class grab1 : MonoBehaviour
             if(grabbedObj != null)
             {
                 Destroy(grabbedObj.GetComponent<FixedJoint>());
+                alreadyGrabbing = false;
             }
             grabbedObj = null;
-            alreadyGrabbing = false;
+            
         }
 
 
@@ -58,30 +59,28 @@ public class grab1 : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if(other.gameObject.CompareTag("Item"))
+        if(other.gameObject.CompareTag("Item") && !alreadyGrabbing)
         {
             Debug.Log("w7el");
            
             grabbedObj = other.gameObject;
-            if(alreadyGrabbing)
-            {
-                FixedJoint fj = grabbedObj.AddComponent<FixedJoint>();
+            alreadyGrabbing = true;
+            FixedJoint fj = grabbedObj.AddComponent<FixedJoint>();
             fj.connectedBody = rb;
             fj.breakForce = 9000;
-            }
-            
+
+
         }
-        if (other.gameObject.CompareTag("switcher"))
+        if (other.gameObject.CompareTag("switcher") && !alreadyGrabbing)
         {
             Debug.Log("w7el");
 
             grabbedObj = other.gameObject;
-            if (alreadyGrabbing)
-            {
-                FixedJoint fj = grabbedObj.AddComponent<FixedJoint>();
-                fj.connectedBody = rb;
-                fj.breakForce = 150;
-            }
+            alreadyGrabbing = true;
+            FixedJoint fj = grabbedObj.AddComponent<FixedJoint>();
+            fj.connectedBody = rb;
+            fj.breakForce = 9000;
+
 
         }
     }
@@ -89,7 +88,6 @@ public class grab1 : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Debug.Log("sayeb");
-        grabbedObj = null;
+        
     }
-
 }

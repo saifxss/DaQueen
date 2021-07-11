@@ -8,9 +8,10 @@ public class grabweapon : MonoBehaviour
     //public GameObject currentWeapon;
     public GameObject WP;
     bool canGrab;
-    bool alreadyGrabing = false;
      public Vector3 offset;
 
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,27 +21,21 @@ public class grabweapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canGrab)
+        
+        if (canGrab)
         {
             Debug.Log("canGrab");
-            if(Input.GetKeyDown(KeyCode.F) && !alreadyGrabing)
+            if(Input.GetKeyDown(KeyCode.F))
             {
-                { pickUp(); }
-                if (Input.GetKeyUp(KeyCode.F))
-                    {
-                    Debug.Log("yGrab");
-                    alreadyGrabing = true;
-                    }
+                  pickUp();
+                canGrab = false;
             }
-            
         }
-        if (Input.GetKeyDown(KeyCode.F) && alreadyGrabing)
+        if (Input.GetKeyDown(KeyCode.A))
         {
+            Debug.Log("ydropi");
             Drop();
-            if (Input.GetKeyUp(KeyCode.F))
-            {
-                alreadyGrabing = false;
-            }
+            canGrab = true;
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -49,6 +44,7 @@ public class grabweapon : MonoBehaviour
         {
             canGrab = true;
             WP = other.gameObject;
+            
         }
             
     }
@@ -59,20 +55,26 @@ public class grabweapon : MonoBehaviour
     }
     private void pickUp()
     {
+        
         Debug.Log("pickUp");
+        Destroy(WP.GetComponent<Rigidbody>());
         WP.transform.parent = equipPosition;
         WP.transform.position = equipPosition.position + offset;
         WP.transform.localEulerAngles = new Vector3(0f,180f,0f);
         
+
         //WP.GetComponent<Rigidbody>().isKinematic = true;
 
     }
 
     private void Drop()
     {
+        
+        WP.AddComponent<Rigidbody>();
         Debug.Log("Drop");
         WP.transform.parent = null;
+        WP = null;
         //WP.GetComponent<Rigidbody>().isKinematic = false;
-        
+
     }
 }
