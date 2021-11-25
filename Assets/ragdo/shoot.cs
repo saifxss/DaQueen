@@ -15,7 +15,7 @@ public class shoot : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer> 2f)
+        if (timer> 3f)
         {
             Instantiate(projectile, transform.position, transform.rotation);
             timer = 0f;

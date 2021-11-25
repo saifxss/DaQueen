@@ -6,6 +6,7 @@ public class force : MonoBehaviour
 {
     public Rigidbody sphy;
     public float speed;
+    public int asba;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,6 @@ public class force : MonoBehaviour
     void Update()
     {
         
-        Destroy(gameObject, 2);
+        Destroy(gameObject, asba);
     }
 }
