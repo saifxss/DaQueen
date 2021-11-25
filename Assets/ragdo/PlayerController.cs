@@ -17,6 +17,10 @@ public class PlayerController : NetworkBehaviour
     void Start()
     {
         //hips = GetComponent<Rigidbody>();    
+        if (isLocalPlayer)
+        {
+            transform.GetChild(2).GetChild(0).GetChild(0).gameObject.SetActive(true);
+        }
     }
     private void FixedUpdate()
     {
