@@ -8,6 +8,7 @@ TagManager:
   - projectile
   - switcher
   - weapon
+  - Detect
   layers:
   - Default
   - TransparentFX

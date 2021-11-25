@@ -22,7 +22,7 @@ public class killer : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        if (timer > 2f)
+        if (timer > 0.5f)
         {
             CJ.angularXDrive = Riser.angularXDrive;
             CJ.angularYZDrive = Riser.angularYZDrive;
