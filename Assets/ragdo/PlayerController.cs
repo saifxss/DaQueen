@@ -88,6 +88,12 @@ public class PlayerController : NetworkBehaviour
         }
 
     }
+    /*private void Update()
+    {
+        if (transform.GetChild(4).position.y < 3f)
+        {
+            //respawn
+        }
+    }*/
 
-    
 }

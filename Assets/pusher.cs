@@ -9,8 +9,8 @@ public class pusher : MonoBehaviour
     {
         if (col.gameObject.tag == "Detect")
         {
-            col.transform.parent.GetChild(5).gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * 5000f);
-            Debug.Log(col.transform.parent.GetChild(5).gameObject.name);
+            col.transform.parent.GetChild(5).gameObject.GetComponent<Rigidbody>().AddForce(col.transform.forward * -9000f);
+            
         }
     }
 }
