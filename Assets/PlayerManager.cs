@@ -8,9 +8,12 @@ public class PlayerManager : NetworkBehaviour
     [SyncVar]
     [SerializeField]
     private string displayName = "Missing Name";
-    [SyncVar]
+    [SyncVar(hook = nameof(HandleDisplayColourUpdate))]
     [SerializeField]
     private Color displayColour = Color.black;
+    [SerializeField]
+    private Renderer displayColourRenderer;
+    public Material PlayerM;
     [Server]
     public void SetDisplayName(string newDisplayName)
     {
@@ -20,5 +23,9 @@ public class PlayerManager : NetworkBehaviour
     public void SetDisplayColour(Color newDisplayColour)
     {
         displayColour = newDisplayColour;
+    }
+    private void HandleDisplayColourUpdate(Color oldColour,Color newColour)
+    {
+        PlayerM.color= displayColour;
     }
 }
