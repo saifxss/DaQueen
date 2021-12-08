@@ -9,6 +9,7 @@ TagManager:
   - switcher
   - weapon
   - Detect
+  - Platform
   layers:
   - Default
   - TransparentFX
