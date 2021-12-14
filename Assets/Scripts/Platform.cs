@@ -21,6 +21,6 @@ public class Platform : MonoBehaviour
     }
     private void Update()
     {
-        transform.position = transform.GetChild(7).position;
+        //transform.position = transform.GetChild(7).position;
     }
 }

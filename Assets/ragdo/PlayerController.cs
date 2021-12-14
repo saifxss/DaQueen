@@ -10,7 +10,7 @@ public class PlayerController : NetworkBehaviour
     public float jumpForce;
     public Animator anim;
     
-
+    public Joystick Joystick;
     public Rigidbody hips;
     public bool isGrounded;
 
@@ -26,7 +26,7 @@ public class PlayerController : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            if (Input.GetKey(KeyCode.Z))
+            if ((Input.GetKey(KeyCode.Z))||(Joystick.Vertical>0))
             {
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
@@ -47,7 +47,7 @@ public class PlayerController : NetworkBehaviour
                 anim.SetBool("isWalk", false);
                 anim.SetBool("isRun", false);
             }
-            if (Input.GetKey(KeyCode.Q))
+            if ((Input.GetKey(KeyCode.Q))||( Joystick.Horizontal < 0))
             {
                 anim.SetBool("right", true);
                 hips.AddForce(-hips.transform.right * strafeSpeed);
@@ -56,7 +56,7 @@ public class PlayerController : NetworkBehaviour
             {
                 anim.SetBool("right", false);
             }
-            if (Input.GetKey(KeyCode.D))
+            if ((Input.GetKey(KeyCode.D))||(Joystick.Horizontal > 0))
             {
                 anim.SetBool("left", true);
                 hips.AddForce(hips.transform.right * strafeSpeed);
@@ -65,7 +65,7 @@ public class PlayerController : NetworkBehaviour
             {
                 anim.SetBool("left", false);
             }
-            if (Input.GetKey(KeyCode.S))
+            if ((Input.GetKey(KeyCode.S))||(Joystick.Vertical <0))
             {
                 anim.SetBool("isWalk", true);
                 hips.AddForce(-hips.transform.forward * speed);
